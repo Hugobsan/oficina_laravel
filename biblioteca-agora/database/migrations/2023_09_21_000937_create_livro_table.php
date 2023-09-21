@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('numero_paginas');
             $table->string('isbn', 13)->unique();
             $table->string('editora', 255);
-            $table->int('quantidade');
+            $table->integer('quantidade');
             $table->unsignedBigInteger('autor_id');
             $table->unsignedBigInteger('genero_id');
             $table->timestamps();

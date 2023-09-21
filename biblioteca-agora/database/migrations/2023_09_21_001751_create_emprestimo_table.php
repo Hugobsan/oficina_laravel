@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('livro_id');
             $table->date('data_emprestimo');
             $table->date('data_devolucao_esperada');
-            $table->int('quantidade_renovacoes')->default(0);
+            $table->integer('quantidade_renovacoes')->default(0);
             $table->date('data_devolucao')->nullable()->default(null);
             $table->timestamps();
 
