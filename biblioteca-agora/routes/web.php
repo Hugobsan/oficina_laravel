@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AutenticacaoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Redireciona para a rota de login
+Route::redirect('/', '/login');
+
+Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
+    Route::get('/', [AutenticacaoController::class, 'index'])->name('index');
+    Route::post('/', [AutenticacaoController::class, 'login'])->name('autenticar');
+    Route::get('/sair', [AutenticacaoController::class, 'logout'])->name('sair');
 });
