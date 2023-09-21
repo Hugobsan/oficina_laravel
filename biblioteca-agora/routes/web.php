@@ -28,8 +28,27 @@ Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
     Route::post('/registrar', [AutenticacaoController::class, 'cadastraRegistro'])->name('novo_registro');
 });
 
+//Rotas de usuarios
 Route::group(['prefix' => 'usuarios', 'as' => 'usuarios.'], function(){
     Route::get('/', [UsuarioController::class, 'index'])->name('index');
     Route::get('/{id}', [UsuarioController::class, 'perfil'])->name('perfil');
+    Route::post('/{id}', [UsuarioController::class, 'atualizar'])->name('atualizar');
+    Route::get('/{id}/excluir', [UsuarioController::class, 'excluir'])->name('excluir');
 });
 
+//Rotas de livros
+Route::group(['prefix' => 'livros', 'as' => 'livros.'], function(){
+    Route::get('/', [LivroController::class, 'index'])->name('index');
+    Route::get('/{id}', [LivroController::class, 'livro'])->name('detalhes');
+    Route::post('/{id}', [LivroController::class, 'atualizar'])->name('atualizar');
+    Route::get('/{id}/excluir', [LivroController::class, 'excluir'])->name('excluir');
+});
+
+//Rotas de emprestimos
+Route::group(['prefix' => 'emprestimos', 'as' => 'emprestimos.'], function(){
+    Route::get('/', [EmprestimoController::class, 'index'])->name('index');
+    Route::post('/criar', [EmprestimoController::class, 'criar'])->name('criar');
+    Route::get('/{id}', [EmprestimoController::class, 'emprestimo'])->name('detalhes');
+    Route::post('/devolver/{id}', [EmprestimoController::class, 'devolver'])->name('devolver');
+    Route::post('/renovar/{id}', [EmprestimoController::class, 'renovar'])->name('renovar');
+});
