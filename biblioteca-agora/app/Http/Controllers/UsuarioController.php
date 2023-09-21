@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
-    //
+    public function index()
+    {
+        dd("Chegou aqui");
+    }
 }
