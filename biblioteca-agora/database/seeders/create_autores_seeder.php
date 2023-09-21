@@ -12,6 +12,7 @@ class create_autores_seeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // Criar 10 autores
+        \App\Models\Autor::factory()->count(10)->create();
     }
 }

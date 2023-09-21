@@ -12,6 +12,7 @@ class create_generos_seeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // Criar 10 generos
+        \App\Models\Genero::factory()->count(10)->create();
     }
 }

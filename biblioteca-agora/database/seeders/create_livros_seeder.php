@@ -12,6 +12,7 @@ class create_livros_seeder extends Seeder
      */
     public function run(): void
     {
-
+        // Criar 10 livros
+        \App\Models\Livro::factory()->count(10)->create();
     }
 }

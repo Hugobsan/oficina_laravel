@@ -4,10 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Locatario;
 use App\Models\User;
-use App\Models\Admin;
 
-class create_admin_seeder extends Seeder
+class create_loc_teste extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,18 +15,17 @@ class create_admin_seeder extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('admin'),
+            'name' => 'Locatario Teste',
+            'email' => 'locatario@agora.com',
+            'password' => bcrypt('locatario')
         ]);
 
-        //Criando admin 
-        Admin::create([
-            'nome' => 'Admininstrador',
+        //Criando locatario
+        Locatario::create([
+            'nome' => 'Locatario Teste',
             'cpf' => '12345678910',
             'telefone' => '38988112233',
             'user_id' => $user->id,
         ]);
     }
-        
 }
