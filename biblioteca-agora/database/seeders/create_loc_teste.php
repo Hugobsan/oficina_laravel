@@ -15,14 +15,14 @@ class create_loc_teste extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'name' => 'Locatario Teste',
+            'name' => 'Locatario',
             'email' => 'locatario@agora.com',
-            'password' => bcrypt('locatario')
+            'password' => bcrypt('123'),
         ]);
 
-        //Criando locatario
+        //Criando admin 
         Locatario::create([
-            'nome' => 'Locatario Teste',
+            'nome' => 'Locatario',
             'cpf' => '12345678910',
             'telefone' => '38988112233',
             'user_id' => $user->id,

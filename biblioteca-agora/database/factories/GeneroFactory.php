@@ -5,12 +5,11 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Autor>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Genero>
  */
-class AutorFactory extends Factory
+class GeneroFactory extends Factory
 {
-    protected $model = \App\Models\Autor::class;
-    
+    protected $model = \App\Models\Genero::class;
     /**
      * Define the model's default state.
      *
@@ -19,7 +18,7 @@ class AutorFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->name(),
+            'nome' => $this->faker->word(),
         ];
     }
 }
