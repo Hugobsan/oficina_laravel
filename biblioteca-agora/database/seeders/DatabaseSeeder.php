@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(create_locatario_seeder::class);
-        $this->call(create_livros_seeder::class);
+
     }
 }
