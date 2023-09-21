@@ -29,7 +29,7 @@ Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
 });
 
 Route::group(['prefix' => 'usuarios', 'as' => 'usuarios.'], function(){
-    Router::get('/', [UsuarioController::class, 'index'])->name('index');
-    Router::get('/{id}', [UsuarioController::class, 'perfil'])->name('perfil');
+    Route::get('/', [UsuarioController::class, 'index'])->name('index');
+    Route::get('/{id}', [UsuarioController::class, 'perfil'])->name('perfil');
 });
 
