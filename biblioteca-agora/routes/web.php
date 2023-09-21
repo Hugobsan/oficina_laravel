@@ -18,7 +18,18 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/login');
 
 Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
+    //Login
     Route::get('/', [AutenticacaoController::class, 'index'])->name('index');
     Route::post('/', [AutenticacaoController::class, 'login'])->name('autenticar');
     Route::get('/sair', [AutenticacaoController::class, 'logout'])->name('sair');
+
+    //Registro
+    Route::get('/registrar', [AutenticacaoController::class, 'registrar'])->name('registrar');
+    Route::post('/registrar', [AutenticacaoController::class, 'cadastraRegistro'])->name('novo_registro');
 });
+
+Route::group(['prefix' => 'usuarios', 'as' => 'usuarios.'], function(){
+    Router::get('/', [UsuarioController::class, 'index'])->name('index');
+    Router::get('/{id}', [UsuarioController::class, 'perfil'])->name('perfil');
+});
+
