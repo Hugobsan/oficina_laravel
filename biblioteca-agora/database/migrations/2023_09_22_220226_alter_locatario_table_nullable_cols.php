@@ -11,7 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::table('locatario', function (Blueprint $table) {
+            $table->char('telefone', 11)->nullable()->change();
+            $table->char('cpf', 11)->nullable()->change();
+        });
     }
 
     /**
@@ -19,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('locatario', function (Blueprint $table) {
+            $table->char('telefone', 11)->change();
+            $table->char('cpf', 11)->change();
+        });
     }
 };
