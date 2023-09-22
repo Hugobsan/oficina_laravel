@@ -42,4 +42,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function locatario()
+    {
+        //Relacionamento 1 para 1
+        return $this->hasOne(Locatario::class);
+    }
+
+    public function admin()
+    {
+        //Relacionamento 1 para 1
+        return $this->hasOne(Admin::class);
+    }
 }

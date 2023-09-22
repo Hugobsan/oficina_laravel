@@ -72,11 +72,14 @@ class AutenticacaoController extends Controller
 
             return redirect()->back()->with('message', $erro)->withInput();
         }
-        User::create([
+        $user = User::create([
             'name' => $dados['nome'],
             'email' => $dados['email'],
             'password' => bcrypt($dados['password'])
         ]);
+
+        //Criando locatário
+        $user->locatario()->create(['nome' => $dados['nome']]);
 
         $mensagem = (object) [
             'tipo' => 'success',
