@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 
 class AutenticacaoController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        dd($users);
         return view('autenticacao.index');
     }
 
@@ -19,15 +16,15 @@ class AutenticacaoController extends Controller
         $credenciais = $request->only(['email', 'password']);
 
         if (auth()->attempt($credenciais)) {
-            return redirect()->route('emprestimos.index');
+            return redirect()->route('livros.index');
         }
 
-        return redirect()->back()->withErrors('Usuário e/ou senha incorretos');
+        return redirect()->back()->withErrors('Usuário e/ou senha incorretos')->withInput();
     }
 
     public function logout()
     {
         auth()->logout();
-        return redirect()->route('autenticacao.index');
+        return redirect()->route('login.index');
     }
 }

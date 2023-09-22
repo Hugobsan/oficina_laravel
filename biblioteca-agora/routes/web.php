@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AutenticacaoController;
+use App\Http\Controllers\EmprestimoController;
+use App\Http\Controllers\LivroController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
