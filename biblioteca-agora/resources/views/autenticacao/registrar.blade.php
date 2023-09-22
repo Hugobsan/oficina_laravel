@@ -1,12 +1,11 @@
 @extends('layouts.externo')
 
 @section('titulo')
-    Login - Biblioteca Ágora
+    Registrar - Biblioteca Ágora
 @endsection
 
 @section('content')
-    <h1>Login</h1>
-
+<h1>Registrar-se</h1>
     <form action="{{ route('login.autenticar') }}" method="POST">
         @csrf
         <div class="mb-3">
@@ -37,4 +36,5 @@
 @endsection
 
 @section('script')
+
 @endsection

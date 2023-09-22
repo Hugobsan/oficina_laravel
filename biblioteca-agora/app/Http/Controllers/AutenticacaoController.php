@@ -34,4 +34,9 @@ class AutenticacaoController extends Controller
         auth()->logout();
         return redirect()->route('login.index');
     }
+
+    public function registrar()
+    {
+        return view('autenticacao.registrar');
+    }
 }
