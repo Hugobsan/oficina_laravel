@@ -34,8 +34,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    <div class="content">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8 col-xl-8 filler-login">
+    <div class="content row">
+        <div class="d-none d-sm-none d-md-flex col-md-6 col-lg-8 col-xl-8 filler-login">
             <div class="brand-filler">
                 <i class="fa-solid fa-book"></i>
                 <span class="brand">Biblioteca Ágora</span>
