@@ -17,7 +17,7 @@ class AutenticacaoController extends Controller
         $credenciais = $request->only(['email', 'password']);
 
         if (auth()->attempt($credenciais, $request->input('remember'))) {
-            return redirect()->route('emprestimos.index');
+            return redirect()->route('livros.index');
         }
 
         $mensagem = (object) [
