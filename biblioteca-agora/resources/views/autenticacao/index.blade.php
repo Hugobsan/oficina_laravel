@@ -1,6 +1,58 @@
-<form action="{{route('login.autenticar')}}" method="POST">
-      @csrf
-      <input type="text" name="email" placeholder="E-mail" value="{{old('email')}}">
-      <input type="password" name="password" placeholder="Senha">
-      <button type="submit">Entrar</button>
-</form>
+@extends('layouts.externo')
+
+@section('titulo')
+    Login - Biblioteca Ágora
+@endsection
+
+@section('content')
+    <h1>Login</h1>
+
+    <form action="{{ route('login.autenticar') }}" method="POST">
+        @csrf
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required>
+        </div>
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <div class="password-container">
+                <input type="password" class="form-control" placeholder="Digite sua senha" name="password" id="password"
+                    required>
+                <i class="fa-solid fa-eye" id="eye"></i>
+            </div>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="lembrar" name="remember">
+            <label class="form-check-label" for="lembrar">Manter-se conectado</label>
+        </div>
+        <div class="mb-3">
+            <a class="forgot-password" href="#">Esqueci minha senha</a>
+        </div>
+        <hr>
+        <button type="submit">Entrar</button>
+    </form>
+    <div class="mb-3">
+        <a class="forgot-password" href="{{ route('login.registrar') }}">Não possui uma conta? Cadastre-se</a>
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        const passwordInput = document.querySelector("#password");
+        const eye = document.querySelector("#eye");
+
+        eye.addEventListener("click", togglePassword);
+
+        function togglePassword() {
+            if (passwordInput.type == "password") {
+                passwordInput.type = "text"
+                eye.classList.remove("fa-eye")
+                eye.classList.add("fa-eye-slash")
+            } else {
+                passwordInput.type = "password"
+                eye.classList.remove("fa-eye-slash")
+                eye.classList.add("fa-eye")
+            }
+        }
+    </script>
+@endsection

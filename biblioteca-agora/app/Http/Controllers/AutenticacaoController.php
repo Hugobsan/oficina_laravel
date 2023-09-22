@@ -13,13 +13,20 @@ class AutenticacaoController extends Controller
 
     public function login(Request $request)
     {
+        //Executa a verificação de credenciais e de lembrar-me
         $credenciais = $request->only(['email', 'password']);
 
-        if (auth()->attempt($credenciais)) {
-            return redirect()->route('livros.index');
+        if (auth()->attempt($credenciais, $request->input('remember'))) {
+            return redirect()->route('emprestimos.index');
         }
 
-        return redirect()->back()->withErrors('Usuário e/ou senha incorretos')->withInput();
+        $mensagem = (object) [
+            'tipo' => 'danger',
+            'titulo' => 'Erro',
+            'texto' => 'Usuário e/ou senha inválidos.'
+        ];
+
+        return redirect()->back()->with('message', $mensagem)->withInput();
     }
 
     public function logout()
