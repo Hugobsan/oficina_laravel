@@ -1,0 +1,108 @@
+body{
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    background-color: #F0F0F0;
+}
+
+.navbar-brand .fa-book{
+    color: #642616;
+    font-size: 1.5em;
+    padding-right: 30px;
+    margin-right: 10px;
+    border-right: 1px solid #cbcbcb;
+}
+
+.active{
+    border: 1px solid #642616;
+    border-radius: 10px;
+}
+
+.active:hover{
+    background-color: #642616;
+    color: #FFF !important;
+}
+
+.user-credentials{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    margin: 0px 10px;
+}
+
+.user-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+.user-info:hover{
+    cursor: pointer;
+    background-color: #EEE;
+    border-radius: 5px;
+
+}
+
+.user-info .username{
+    font-weight: 500;
+   
+    justify-self: flex-end;
+}
+
+.user-info .email{
+    font-size: 0.8em;
+    justify-self: flex-end;
+}
+
+.user-icon{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 500;
+    border: 2px solid #CCC;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+}
+
+.end-menu{
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0px 10px;
+}
+
+.navbar ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar ul li{
+    width: 100%;
+    text-align: center;
+}
+
+.navbar .end-menu ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-exit{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 10px;
+    padding: 5px;
+    border-radius: 5px;
+}

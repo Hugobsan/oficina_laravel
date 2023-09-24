@@ -6,8 +6,16 @@ use Illuminate\Http\Request;
 
 class LivroController extends Controller
 {
+    protected $menuAtivo;
+
+    public function __construct()
+    {
+        $this->menuAtivo = 'livros';
+    }
+
     public function index()
     {
-        return view('livros.index');
+        $menuAtivo = $this->menuAtivo;
+        return view('livros.index', compact('menuAtivo'));
     }
 }
