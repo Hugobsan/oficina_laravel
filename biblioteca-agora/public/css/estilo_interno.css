@@ -11,12 +11,12 @@ body{
     border-right: 1px solid #cbcbcb;
 }
 
-.active{
+.navbar .active{
     border: 1px solid #642616;
     border-radius: 10px;
 }
 
-.active:hover{
+.navbar .active:hover{
     background-color: #642616;
     color: #FFF !important;
 }
@@ -105,4 +105,65 @@ body{
     margin: 0px 10px;
     padding: 5px;
     border-radius: 5px;
+}
+
+.topo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px 10px 30px;
+}
+
+.topo h1{
+    font-weight: 500;
+    font-size: 32px;
+}
+
+.btn-new{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background: #642616;
+    color: #FFF;
+    border: 0px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-weight: 500;
+    width: 150px;
+}
+
+.btn-new:hover{
+    cursor: pointer;
+    background: #FFF;
+    color: #642616;
+    border: 1px solid #642616;
+}
+
+.btn-new .fa-plus{
+    justify-self: center;
+    background: #FFF;
+    color: #642616;
+    border-radius: 50%;
+    padding: 5px 6px;
+}
+
+.tabela{
+    background: #FFF;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 20px 10px;
+}
+
+.tabela td a, .btn-search{
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #642616;
+    background: #cbcbcb;
+}
+
+.btn-search{
+    width: 50px;
 }

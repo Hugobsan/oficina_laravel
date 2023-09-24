@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth', 'markmenu']], function () {
     //Rotas de livros
     Route::group(['prefix' => 'livros', 'as' => 'livros.'], function () {
         Route::get('/', [LivroController::class, 'index'])->name('index');
+        Route::post('/pesquisar', [LivroController::class, 'pesquisar'])->name('pesquisar');
+        Route::post('/criar', [LivroController::class, 'criar'])->name('criar');
         Route::get('/{id}', [LivroController::class, 'livro'])->name('detalhes');
         Route::post('/{id}', [LivroController::class, 'atualizar'])->name('atualizar');
         Route::get('/{id}/excluir', [LivroController::class, 'excluir'])->name('excluir');
