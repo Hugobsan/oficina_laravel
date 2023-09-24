@@ -8,6 +8,6 @@ class UsuarioController extends Controller
 {
     public function index()
     {
-        dd("Chegou aqui");
+        return view('usuarios.index');
     }
 }

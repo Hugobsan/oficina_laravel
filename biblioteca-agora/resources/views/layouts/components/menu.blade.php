@@ -8,14 +8,14 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{$menuAtivo == 'livros' ? 'active': ''}}" href="{{ route('livros.index') }}">Livros</a>
+                    <a class="nav-link {{session()->get('menuAtivo') == 'livros' ? 'active': ''}}" href="{{ route('livros.index') }}">Livros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('emprestimos.index') }}">Empréstimos</a>
+                    <a class="nav-link {{session()->get('menuAtivo') == 'emprestimos' ? 'active': ''}}" href="{{ route('emprestimos.index') }}">Empréstimos</a>
                 </li>
                 @if (auth()->user()->admin)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('usuarios.index') }}">Usuários</a>
+                        <a class="nav-link {{session()->get('menuAtivo') == 'usuarios' ? 'active': ''}}" href="{{ route('usuarios.index') }}">Usuários</a>
                     </li>
                 @endif
             </ul>

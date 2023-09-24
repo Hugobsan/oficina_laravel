@@ -33,7 +33,7 @@ Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
 
 
 //Grupo de rotas internas
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'markmenu']], function () {
     //Rotas de usuarios
     Route::group(['prefix' => 'usuarios', 'as' => 'usuarios.'], function () {
         Route::get('/', [UsuarioController::class, 'index'])->name('index');
