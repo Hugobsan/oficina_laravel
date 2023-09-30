@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <form action="{{ route('livros.criar') }}" method="POST">
                     @csrf
-                    <input type="text" required maxlength="255" class="form-control" placeholder="Nome do livro"
+                    <input type="text" required maxlength="255" class="form-control" placeholder="Título do livro"
                         name="titulo">
                     <div class="row my-3">
                         <div class="col-sm-12 col-md-6">
@@ -45,7 +45,7 @@
                             <input type="number" required class="form-control" placeholder="Volume" name="volume">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <input type="number" required class="form-control" placeholder="Nº de páginas" name="num-paginas">
+                            <input type="number" required class="form-control" placeholder="Nº de páginas" name="paginas">
                         </div>
                     </div>
                     <div class="row my-3">

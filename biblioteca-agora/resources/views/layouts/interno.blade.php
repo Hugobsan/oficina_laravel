@@ -9,7 +9,7 @@
 
     <!-- Normalize CSS -->
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
-    
+
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
@@ -29,6 +29,12 @@
 </head>
 
 <body>
+    @if ($msg = session('message'))
+        <div class="alert position-fixed w-100 alert-{{ $msg->tipo }} alert-dismissible fade show" role="alert">
+            <strong>{{ $msg->titulo }}</strong> {{ $msg->texto }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     @include('layouts.components.menu')
     @yield('content')
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -39,9 +45,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-    <script>
-
-    </script>
+    <script></script>
     @yield('script')
 
 </body>

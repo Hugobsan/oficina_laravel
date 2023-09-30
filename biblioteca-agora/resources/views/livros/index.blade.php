@@ -60,4 +60,10 @@
 @endsection
 
 @section('script')
+    <script>
+        //Abrindo o modal de cadastro caso haja erro de validação
+        @if (isset($msg) && $msg->tipo == 'danger')
+            var myModal = new bootstrap.Modal(document.getElementById('CriarLivro'));
+            myModal.show();
+    </script>
 @endsection

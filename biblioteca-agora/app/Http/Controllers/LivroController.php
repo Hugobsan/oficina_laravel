@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Livro;
 use App\Models\Autor;
 use App\Models\Genero;
+use Illuminate\Support\Facades\Validator;
 
 class LivroController extends Controller
 {
@@ -37,6 +38,39 @@ class LivroController extends Controller
 
     public function criar(Request $request){
         $dados = $request->all();
+
+        $regras = [
+            'titulo' => 'required|max:255',
+            'autor' => 'required|max:255',
+            'genero' => 'required|max:255',
+            'editora' => 'required|max:255',
+            'edicao ' => 'required|numeric',
+            'volume' => 'required|numeric',
+            'paginas' => 'required|numeric',
+            'quant-exemplares' => 'required|numeric',
+            'isbn' => 'required|numeric|digits:13|unique:livro,isbn',
+        ];
+
+        $mensagens = [
+            'required' => 'O campo :attribute é obrigatório',
+            'max' => 'O campo :attribute deve ter no máximo :max caracteres',
+            'numeric' => 'O campo :attribute deve ser um número',
+            'digits' => 'O campo :attribute deve ter :digits dígitos',
+            'unique' => 'O campo :attribute já está cadastrado',
+        ];
+
+        $validator = Validator::make($dados, $regras, $mensagens);
+
+        if ($validator->fails()) {
+            $mensagem = (object) [
+                'tipo' => 'danger',
+                'titulo' => 'Erro',
+                'texto' => $validator->errors()->first(),
+            ];
+
+            return redirect()->back()->with('message', $mensagem)->withInput();
+        }
+
 
     }
 }
