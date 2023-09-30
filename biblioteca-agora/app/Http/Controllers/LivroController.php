@@ -71,6 +71,31 @@ class LivroController extends Controller
             return redirect()->back()->with('message', $mensagem)->withInput();
         }
 
+        $autor = Autor::firstOrCreate(['nome' => $dados['autor']]);
+        $genero = Genero::firstOrCreate(['nome' => $dados['genero']]);
 
+        $livro = Livro::create([
+            'titulo' => $dados['titulo'],
+            'autor_id' => $autor->id,
+            'genero_id' => $genero->id,
+            'editora' => $dados['editora'],
+            'edicao' => $dados['edicao'],
+            'volume' => $dados['volume'],
+            'paginas' => $dados['paginas'],
+            'quant_exemplares' => $dados['quant-exemplares'],
+            'isbn' => $dados['isbn'],
+        ]);
+
+        $mensagem = (object) [
+            'tipo' => 'success',
+            'titulo' => '',
+            'texto' => 'Livro cadastrado com sucesso',
+        ];
+
+        return redirect()->back()->with('message', $mensagem);
+    }
+
+    public function livro(){
+        
     }
 }

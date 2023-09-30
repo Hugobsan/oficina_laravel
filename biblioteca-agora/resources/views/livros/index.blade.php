@@ -65,5 +65,6 @@
         @if (isset($msg) && $msg->tipo == 'danger')
             var myModal = new bootstrap.Modal(document.getElementById('CriarLivro'));
             myModal.show();
+        @endif
     </script>
 @endsection
