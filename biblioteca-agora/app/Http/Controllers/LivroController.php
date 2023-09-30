@@ -38,13 +38,13 @@ class LivroController extends Controller
 
     public function criar(Request $request){
         $dados = $request->all();
-
+        
         $regras = [
             'titulo' => 'required|max:255',
             'autor' => 'required|max:255',
             'genero' => 'required|max:255',
             'editora' => 'required|max:255',
-            'edicao ' => 'required|numeric',
+            'edicao' => 'required|numeric',
             'volume' => 'required|numeric',
             'paginas' => 'required|numeric',
             'quant-exemplares' => 'required|numeric',
@@ -70,19 +70,18 @@ class LivroController extends Controller
 
             return redirect()->back()->with('message', $mensagem)->withInput();
         }
-
         $autor = Autor::firstOrCreate(['nome' => $dados['autor']]);
         $genero = Genero::firstOrCreate(['nome' => $dados['genero']]);
 
-        $livro = Livro::create([
+        Livro::create([
             'titulo' => $dados['titulo'],
             'autor_id' => $autor->id,
             'genero_id' => $genero->id,
             'editora' => $dados['editora'],
             'edicao' => $dados['edicao'],
             'volume' => $dados['volume'],
-            'paginas' => $dados['paginas'],
-            'quant_exemplares' => $dados['quant-exemplares'],
+            'numero_paginas' => $dados['paginas'],
+            'quantidade' => $dados['quant-exemplares'],
             'isbn' => $dados['isbn'],
         ]);
 
@@ -96,6 +95,6 @@ class LivroController extends Controller
     }
 
     public function livro(){
-        
+
     }
 }
