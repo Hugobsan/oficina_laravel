@@ -94,7 +94,10 @@ class LivroController extends Controller
         return redirect()->back()->with('message', $mensagem);
     }
 
-    public function livro(){
-
+    public function livro(string $id){
+        $livro = Livro::find($id);
+        $autores = Autor::all();
+        $generos = Genero::all();
+        return view('livros.detalhes', compact('livro', 'autores', 'generos'));
     }
 }
