@@ -18,7 +18,6 @@ class MarkMenu
         //Adicionando prefixo da rota na section para ativar item de menu
         $prefixo = explode('/', $request->route()->getPrefix())[0];
         $request->session()->put('menuAtivo', $prefixo);
-        $request->session()->save();
         return $next($request);
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\MarkMenu;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
 
 
 //Grupo de rotas internas
-Route::group(['middleware' => ['auth', 'markmenu']], function () {
+Route::group(['middleware' => ['auth', MarkMenu::class]], function () {
     //Rotas de usuarios
     Route::group(['prefix' => 'usuarios', 'as' => 'usuarios.'], function () {
         Route::get('/', [UsuarioController::class, 'index'])->name('index');
@@ -44,9 +45,11 @@ Route::group(['middleware' => ['auth', 'markmenu']], function () {
 
     //Rotas de livros
     Route::group(['prefix' => 'livros', 'as' => 'livros.'], function () {
-        Route::get('/', [LivroController::class, 'index'])->name('index');
+        Route::get('/pesquisar', [LivroController::class, 'index'])->name('index');
+        Route::post('/pesquisar', [LivroController::class, 'pesquisar'])->name('pesquisar');
+        Route::post('/criar', [LivroController::class, 'criar'])->name('criar');
         Route::get('/{id}', [LivroController::class, 'livro'])->name('detalhes');
-        Route::post('/{id}', [LivroController::class, 'atualizar'])->name('atualizar');
+        Route::post('/editar/{id}', [LivroController::class, 'atualizar'])->name('atualizar');
         Route::get('/{id}/excluir', [LivroController::class, 'excluir'])->name('excluir');
     });
 
