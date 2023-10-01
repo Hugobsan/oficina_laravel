@@ -27,8 +27,7 @@ class AutenticacaoController extends Controller
             'titulo' => 'Erro',
             'texto' => 'Usuário e/ou senha inválidos.'
         ];
-
-        return redirect()->back()->with('message', $mensagem)->withInput();
+        return redirect()->back()->with('message', 'teste')->withInput();
     }
 
     public function logout()

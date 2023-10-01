@@ -172,3 +172,21 @@ body{
 .btn-search{
     width: 50px;
 }
+
+.emprestimos{
+    font-size: 14px;
+}
+
+.emprestimos a{
+    color: #642616;
+    text-decoration: none;
+}
+
+.emprestimos a:hover{
+    text-decoration: underline;
+}
+
+.box-historico{
+    max-height: 400px;
+    overflow-y: auto;
+}

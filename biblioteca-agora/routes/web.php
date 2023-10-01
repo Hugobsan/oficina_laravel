@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth', 'markmenu']], function () {
         Route::post('/pesquisar', [LivroController::class, 'pesquisar'])->name('pesquisar');
         Route::post('/criar', [LivroController::class, 'criar'])->name('criar');
         Route::get('/{id}', [LivroController::class, 'livro'])->name('detalhes');
-        Route::post('/{id}', [LivroController::class, 'atualizar'])->name('atualizar');
+        Route::post('/editar/{id}', [LivroController::class, 'atualizar'])->name('atualizar');
         Route::get('/{id}/excluir', [LivroController::class, 'excluir'])->name('excluir');
     });
 
