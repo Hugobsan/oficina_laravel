@@ -171,7 +171,7 @@ class LivroController extends Controller
         $livro->save();
 
 <<<<<<< HEAD
-        $mensagem = [
+        $mensagem = (object) [
 =======
         $mensagem = (object) [
 >>>>>>> debug
