@@ -170,7 +170,11 @@ class LivroController extends Controller
         $livro->isbn = $dados['isbn'];
         $livro->save();
 
+<<<<<<< HEAD
         $mensagem = [
+=======
+        $mensagem = (object) [
+>>>>>>> debug
             'tipo' => 'success',
             'titulo' => '',
             'texto' => 'Livro atualizado com sucesso',

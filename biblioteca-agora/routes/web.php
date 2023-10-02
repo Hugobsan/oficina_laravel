@@ -5,6 +5,7 @@ use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\MarkMenu;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
 
 
 //Grupo de rotas internas
-Route::group(['middleware' => ['auth', 'markmenu']], function () {
+Route::group(['middleware' => ['auth', MarkMenu::class]], function () {
     //Rotas de usuarios
     Route::group(['prefix' => 'usuarios', 'as' => 'usuarios.'], function () {
         Route::get('/', [UsuarioController::class, 'index'])->name('index');
