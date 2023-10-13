@@ -32,12 +32,12 @@ Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
     Route::post('/registrar', [AutenticacaoController::class, 'cadastraRegistro'])->name('novo_registro');
 });
 
-
 //Grupo de rotas internas
 Route::group(['middleware' => ['auth', MarkMenu::class]], function () {
     //Rotas de usuarios
     Route::group(['prefix' => 'usuarios', 'as' => 'usuarios.'], function () {
-        Route::get('/', [UsuarioController::class, 'index'])->name('index');
+        Route::get('/pesquisar', [UsuarioController::class, 'index'])->name('index');
+        Route::post('/pesquisar', [UsuarioController::class, 'pesquisar'])->name('pesquisar');
         Route::get('/{id}', [UsuarioController::class, 'perfil'])->name('perfil');
         Route::post('/{id}', [UsuarioController::class, 'atualizar'])->name('atualizar');
         Route::get('/{id}/excluir', [UsuarioController::class, 'excluir'])->name('excluir');
@@ -55,10 +55,11 @@ Route::group(['middleware' => ['auth', MarkMenu::class]], function () {
 
     //Rotas de emprestimos
     Route::group(['prefix' => 'emprestimos', 'as' => 'emprestimos.'], function () {
-        Route::get('/', [EmprestimoController::class, 'index'])->name('index');
+        Route::get('/pesquisar', [EmprestimoController::class, 'index'])->name('index');
+        Route::post('/pesquisar', [EmprestimoController::class, 'pesquisar'])->name('pesquisar');
         Route::post('/criar', [EmprestimoController::class, 'criar'])->name('criar');
         Route::get('/{id}', [EmprestimoController::class, 'emprestimo'])->name('detalhes');
-        Route::post('/devolver/{id}', [EmprestimoController::class, 'devolver'])->name('devolver');
-        Route::post('/renovar/{id}', [EmprestimoController::class, 'renovar'])->name('renovar');
+        Route::get('/devolver/{id}', [EmprestimoController::class, 'devolver'])->name('devolver');
+        Route::get('/renovar/{id}', [EmprestimoController::class, 'renovar'])->name('renovar');
     });
 });

@@ -28,7 +28,7 @@
                             <datalist id="dl-genero">
                                 @foreach ($generos as $genero)
                                     <option value="{{ $genero->nome }}"
-                                        @if (old('autor') == $autor->nome) selected @endif></option>
+                                        @if (old('genero') == $genero->nome) selected @endif></option>
                                 @endforeach
                             </datalist>
                         </div>

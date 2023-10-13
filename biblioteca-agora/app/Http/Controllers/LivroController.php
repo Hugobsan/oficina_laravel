@@ -15,11 +15,11 @@ class LivroController extends Controller
         $livros = Livro::paginate(10);
         $autores = Autor::all();
         $generos = Genero::all();
-        return view('livros.index', compact('livros','autores','generos'));
+        return view('livros.index', compact('livros', 'autores', 'generos'));
     }
 
     public function pesquisar(Request $request)
-    {   
+    {
         $livros = Livro::where('titulo', 'like', '%' . $request->pesquisa . '%')
             ->orWhere('editora', 'like', '%' . $request->pesquisa . '%')
             ->orWhereHas('autor', function ($query) use ($request) {
@@ -29,16 +29,17 @@ class LivroController extends Controller
                 $query->where('nome', 'like', '%' . $request->pesquisa . '%');
             })
             ->paginate(10);
-        
+
         $autores = Autor::all();
         $generos = Genero::all();
-        
+
         return view('livros.index', compact('livros', 'autores', 'generos'));
     }
 
-    public function criar(Request $request){
+    public function criar(Request $request)
+    {
         $dados = $request->all();
-        
+
         $regras = [
             'titulo' => 'required|max:255',
             'autor' => 'required|max:255',
@@ -94,33 +95,38 @@ class LivroController extends Controller
         return redirect()->back()->with('message', $mensagem);
     }
 
-    public function livro(string $id){
-        $livro = Livro::with('emprestimos')->find($id);
-        
-        foreach ($livro->emprestimos as $emprestimo) {
-            //convertendo datas para o formato brasileiro
-            $emprestimo->data_emprestimo = date('d/m/Y', strtotime($emprestimo->data_emprestimo));
-            $emprestimo->data_devolucao_esperada = date('d/m/Y', strtotime($emprestimo->data_devolucao_esperada));
-            if($emprestimo->data_devolucao != null){
-                $emprestimo->data_devolucao = date('d/m/Y', strtotime($emprestimo->data_devolucao));
-            }
+    public function livro(string $id)
+    {
+        $livro = Livro::find($id);
 
-            //Verificando se empréstimo não foi devolvido e está atrasado
+        // Filtra os empréstimos para mostrar apenas os empréstimos do usuário logado
+        $livro->emprestimos = $livro->emprestimos->filter(function ($emprestimo) {
+            return !(auth()->user()->locatario && $emprestimo->locatario_id != auth()->user()->locatario->id);
+        });
+
+        // Formatando as datas para "d/m/Y"
+        $livro->emprestimos->transform(function ($emprestimo) {
+            $emprestimo->data_emprestimo = formatarData($emprestimo->data_emprestimo);
+            $emprestimo->data_devolucao_esperada = formatarData($emprestimo->data_devolucao_esperada);
+
             $data_devolucao_esperada = strtotime($emprestimo->data_devolucao_esperada);
             $dataAtual = strtotime(date('Y-m-d'));
-            if($emprestimo->data_devolucao == null && $dataAtual > $data_devolucao_esperada){
+            if ($emprestimo->data_devolucao == null && $dataAtual > $data_devolucao_esperada) {
                 $emprestimo->atrasado = true;
-            }else{
+            } else {
                 $emprestimo->atrasado = false;
             }
-        }
+            $emprestimo->data_devolucao = $emprestimo->data_devolucao == null ? "Não devolvido" : date('d/m/Y', strtotime($emprestimo->data_devolucao));
+            return $emprestimo;
+        });
 
         $autores = Autor::all();
         $generos = Genero::all();
         return view('livros.detalhes', compact('livro', 'autores', 'generos'));
     }
 
-    public function atualizar(Request $request, string $id){
+    public function atualizar(Request $request, string $id)
+    {
         $dados = $request->all();
 
         $regras = [
@@ -132,7 +138,7 @@ class LivroController extends Controller
             'volume' => 'required|numeric',
             'paginas' => 'required|numeric',
             'quant-exemplares' => 'required|numeric',
-            'isbn' => 'required|numeric|digits:13|unique:livro,isbn,'.$id,
+            'isbn' => 'required|numeric|digits:13|unique:livro,isbn,' . $id,
         ];
 
         $mensagens = [

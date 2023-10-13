@@ -5,16 +5,17 @@
 @endsection
 
 @section('content')
-{{-- {{dd(session()->all())}} --}}
     <div class="topo">
         <h1>{{ $livro->titulo }}</h1>
-        <!-- Modal button -->
-        <button type="button" class="btn-new" data-bs-toggle="modal" data-bs-target="#EditarLivro">
-            <i class="fas fa-pen-to-square"></i> Editar
-        </button>
+        @if (auth()->user()->admin)
+            <!-- Modal button -->
+            <button type="button" class="btn-new" data-bs-toggle="modal" data-bs-target="#EditarLivro">
+                <i class="fas fa-pen-to-square"></i> Editar
+            </button>
 
-        <!-- Modal -->
-        @include('livros.components.editar')
+            <!-- Modal -->
+            @include('livros.components.editar')
+        @endif
     </div>
     <div class="bg-white mx-3 my-2 p-4 rounded">
         <div class="row">
@@ -86,6 +87,10 @@
     </div>
 @endsection
 
-@section('script')
-    <script></script>
-@endsection
+<script>
+    //Abrindo o modal caso haja erro de validação
+    @if (isset($msg) && $msg->tipo == 'danger')
+        var myModal = new bootstrap.Modal(document.getElementById('EditarLivro'));
+        myModal.show();
+    @endif
+</script>

@@ -7,13 +7,15 @@
 @section('content')
     <div class="topo">
         <h1>Livros</h1>
-        <!-- Modal button -->
-        <button type="button" class="btn-new" data-bs-toggle="modal" data-bs-target="#CriarLivro">
-            <i class="fas fa-plus"></i> Novo Livro
-        </button>
+        @if (auth()->user()->admin)
+            <!-- Modal button -->
+            <button type="button" class="btn-new" data-bs-toggle="modal" data-bs-target="#CriarLivro">
+                <i class="fas fa-plus"></i> Novo Livro
+            </button>
 
-        <!-- Modal -->
-        @include('livros.components.criar')
+            <!-- Modal -->
+            @include('livros.components.criar')
+        @endif
     </div>
     <div class="tabela table-responsive">
         <div>
